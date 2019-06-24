@@ -1,5 +1,5 @@
-### pytorch
-1. 2019.6.24
+### 2019.6.24
+1. pytorch
 ```python
 def _make_layer(self, block, planes, blocks, stride=1):
     downsample = None
@@ -22,5 +22,9 @@ def _make_layer(self, block, planes, blocks, stride=1):
 
     return nn.Sequential(*layers)
 ```
-Ref: https://blog.csdn.net/u013548568/article/details/80294708
-```nn.Sequential()```的输入可以是(conv1,conv2,covn3)类似的顺序模块，也可以是orderDict，也可以是List,但是必须加 * 来引用
+Ref: https://blog.csdn.net/u013548568/article/details/80294708  
+```nn.Sequential()``` 的输入可以是(conv1,conv2,covn3)类似的顺序模块，也可以是orderDict，也可以是List,但是必须加 * 来引用
+
+2. conda env
+安装cv2 PIL(pillow) matplotlib时，最后安装 cv2,否则会导致cv2不可用  
+```import cv2```时出现 ```ImportError: numpy.core.multiarray failed to import```的问题
