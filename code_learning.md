@@ -82,9 +82,8 @@ Ref:
 
 - enumerate()操作，常用于从dataLoader中获取数据
 ```python
-    for iteration, (imgs, targets, _) in enumerate
-    # Imgs and Targets in a batch
-    (train_loader):
+    for iteration, (imgs, targets, _) in enumerate(train_loader):
+        # Imgs and Targets in a batch
         t0 = time.time()
         lr = adjust_learning_rate(optimizer, epoch, epoch_step, gamma,
                                   epoch_size, iteration)
