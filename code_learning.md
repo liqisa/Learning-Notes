@@ -103,3 +103,60 @@ print(list(c)) # 转成list输出
 print(*c) # 直接引用 
 >>> (1,4),(2,5),(3,6)
 ```
+
+### 2019.7.15
+
+#### linux **tar** 指令使用指南  
+
+1. tar 指的是对一个或者多个文件或者文件夹进行打包，合并成一个文件，而 gzip bzip2等指令是对一个大的文件进行压缩，变成一个更小的文件【压缩操作大多只能对一个文件进行，所以一般先tar打包后再压缩】
+2. **tar 语法**  
+
+语法：tar [主选项+辅选项] 文件或目录
+
+使用该命令时，主选项必须有，它告诉tar要做什么事情，辅选项是辅助使用的，可以选用  
+主选项：【一条命令以下5个参数只能有一个  
+```-c```: --create 新建一个压缩文档，即打包  
+```-x```: --extract,--get解压文件  
+```-t```: --list,查看压缩文档里的所有内容  
+```-r```:--append 向压缩文档里追加文件
+```-u```:--update 更新原压缩包中的文件  
+辅助选项：  
+```-z```:是否同时具有gzip的属性？即是否需要用gzip压缩或解压？一般格式为xxx.tar.gz或xx.tgz  
+```-j```：是否同时具有bzip2的属性？即是否需要用bzip2压缩或解压？一般格式为xx.tar.bz2  
+```-v```:显示操作过程！这个参数很常用  
+```-f```：使用文档名，注意，在f之后要立即接文档名，不要再加其他参数！  
+```-C```:切换到指定目录  
+```--exclude FILE```:在压缩过程中，不要将FILE打包
+
+3. **例子**
+```
+$ tar -cvf img.tar img1 img2
+# 将img1和img2两个文件夹打包成img.tar，仅打包不压缩
+img1/
+img1/102.png
+img1/101.png
+img1/100.png
+img2/
+img2/105.png
+img2/104.png
+img2/103.png
+$ ls
+img1  img2  img.tar
+```
+
+```
+# 将img1和img2两个文件夹打包成img.tar.gz，打包后，以gzip压缩
+$ tar -zcvf img.tar.gz img1 img2
+img1/
+img1/102.png
+img1/101.png
+img1/100.png
+img2/
+img2/105.png
+img2/104.png
+img2/103.png
+$ ls
+img1  img2  img.tar  img.tar.gz
+```
+
+3. 更多内容，参考 https://www.cnblogs.com/starof/p/4229017.html
