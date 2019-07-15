@@ -129,7 +129,7 @@ print(*c) # 直接引用
 ```--exclude FILE```:在压缩过程中，不要将FILE打包
 
 3. **例子**
-```
+```shell
 $ tar -cvf img.tar img1 img2
 # 将img1和img2两个文件夹打包成img.tar，仅打包不压缩
 img1/
@@ -144,7 +144,7 @@ $ ls
 img1  img2  img.tar
 ```
 
-```
+```shell
 # 将img1和img2两个文件夹打包成img.tar.gz，打包后，以gzip压缩
 $ tar -zcvf img.tar.gz img1 img2
 img1/
@@ -159,4 +159,4 @@ $ ls
 img1  img2  img.tar  img.tar.gz
 ```
 
-3. 更多内容，参考 https://www.cnblogs.com/starof/p/4229017.html
+4. 更多内容，参考 https://www.cnblogs.com/starof/p/4229017.html
