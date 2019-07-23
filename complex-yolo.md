@@ -46,7 +46,7 @@ $$ Z_{r}(S_{j}) = min(1.0,log(N+1)/64),N = |P_{\Omega i \to j}|$$
 ![./imgs/comlexyolo4.jpg](./imgs/complexyolo4.jpg "./imgs/complexyolo4.jpg")  
 网络结构就是简化版的YOLO2的结构，网络的输入就是上一步处理中的"RGB图"，最后一层卷积之后加上了E-RPN
 
-- Euler-Region-Proposal，该网络接收CNN提取的特征图像，输出目标的3D位置，大小，类别概率和朝向。各参数定义如下  
+Euler-Region-Proposal，该网络接收CNN提取的特征图像，输出目标的3D位置，大小，类别概率和朝向。各参数定义如下  
 
  $$b_{x} = \sigma(t_{x})+c_{x}  $$
  $$b_{y} = \sigma(t_{y})+c_{y}  $$
