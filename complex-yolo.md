@@ -36,7 +36,8 @@
 ![](http://latex.codecogs.com/gif.latex?\\frac{1}{1+sin(x)})
 P_{Ωi→j} = \{ P_{Ωi} = [x,y,z]^{T}|S_{j} = f_{PS}(P_{Ωi},g)
 于是就可以计算每个像素的3个通道，其中zg代表了最大高度，zb为最大强度，zr为该网格内归一化的密度
-![](http://latex.codecogs.com/gif.latex?\\Z_{g}(S_{j}) = max(P_{\Omega i \to j} \bullet[0,0,1]^{T}))
+![](http://latex.codecogs.com/gif.latex?\\Z_{g}(S_{j})=max(P_{\Omega i \to j} \bullet[0,0,1]^{T}))  
+
 $$ Z_{b}(S_{j}) = max(I(P_{\Omega i \to j}))$$
 $$ Z_{r}(S_{j}) = min(1.0,log(N+1)/64),N = |P_{\Omega i \to j}|$$
 
