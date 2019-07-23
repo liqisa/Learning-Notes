@@ -46,11 +46,11 @@ $$ Z_{r}(S_{j}) = min(1.0,log(N+1)/64),N = |P_{\Omega i \to j}|$$
 ![./imgs/comlexyolo4.jpg](./imgs/complexyolo4.jpg "./imgs/complexyolo4.jpg")  
 网络结构就是简化版的YOLO2的结构，网络的输入就是上一步处理中的"RGB图"，最后一层卷积之后加上了E-RPN
 > - Euler-Region-Proposal，该网络接收CNN提取的特征图像，输出目标的3D位置，大小，类别概率和朝向。各参数定义如下
->    $$b_{x} = \sigma(t_{x})+c_{x}  $$
->    $$b_{y} = \sigma(t_{y})+c_{y}  $$
->    $$b_{W} = P_{W}e^{t_{w}}  $$
->    $$b_{l} = P_{l}e^{t_{l}}  $$
->    $$b_{\Phi} = arg(|z|e^{ib_{\phi}})=arctan_{2}(t_{Im},t_{Re})  $$
+    $$b_{x} = \sigma(t_{x})+c_{x}  $$
+    $$b_{y} = \sigma(t_{y})+c_{y}  $$
+    $$b_{W} = P_{W}e^{t_{w}}  $$
+    $$b_{l} = P_{l}e^{t_{l}}  $$
+    $$b_{\Phi} = arg(|z|e^{ib_{\phi}})=arctan_{2}(t_{Im},t_{Re})  $$
 > -  Anchor Box，作者根据尺寸和朝向定义了6种，尺寸分别是车辆、自行车、行人，朝向分别是正前和正后方。
 > 
 > -  复角度回归，角度由atan2(im, re)得到。这样一方面可以避免奇异性，另一方面计算会有封闭的数学空间，从而对模型泛化有优势。
