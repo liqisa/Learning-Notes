@@ -34,9 +34,9 @@
 最后3D点云投影到2D网格中具有8cm的精度。范围内点的集合为PΩ，  考虑到 z 的范围是因为激光雷达的摆放高度为1.73m，这样大概可以包括进地面以上3m的区域。
 利用KITTI数据集给出的标定数据，可以定义将每个点云中的点映射到RGB图像中一个网格的映射函数Sj，描述这个映射的集合为：  
 ![](http://latex.codecogs.com/gif.latex?\\frac{1}{1+sin(x)})
-![](http://latex.codecogs.com/gif.latex?\\P_{Ωi→j} = \{ P_{Ωi} = [x,y,z]^{T}|S_{j} = f_{PS}(P_{Ωi},g)\}）
+P_{Ωi→j} = \{ P_{Ωi} = [x,y,z]^{T}|S_{j} = f_{PS}(P_{Ωi},g)
 于是就可以计算每个像素的3个通道，其中zg代表了最大高度，zb为最大强度，zr为该网格内归一化的密度
-$$ Z_{g}(S_{j}) = max(P_{\Omega i \to j} \bullet[0,0,1]^{T})$$
+![](http://latex.codecogs.com/gif.latex?\\Z_{g}(S_{j}) = max(P_{\Omega i \to j} \bullet[0,0,1]^{T}))
 $$ Z_{b}(S_{j}) = max(I(P_{\Omega i \to j}))$$
 $$ Z_{r}(S_{j}) = min(1.0,log(N+1)/64),N = |P_{\Omega i \to j}|$$
 
