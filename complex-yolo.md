@@ -32,10 +32,10 @@
 
 >每一帧由Velodyne HDL64获取的3D点云都转化成一张俯视图的RGB图像，包括80m x 40m的传感器前方范围（见上图）。RGB图像由高度、强度、密度编码。  
 最后3D点云投影到2D网格中具有8cm的精度。范围内点的集合为PΩ，  考虑到 z 的范围是因为激光雷达的摆放高度为1.73m，这样大概可以包括进地面以上3m的区域。
-利用KITTI数据集给出的标定数据，可以定义将每个点云中的点映射到RGB图像中一个网格的映射函数Sj，描述这个映射的集合为：  
-$$ P_{Ωi→j} = \{ P_{Ωi} = [x,y,z]^{T}|S_{j} = f_{PS}(P_{Ωi},g)\} $$ 
-于是就可以计算每个像素的3个通道，其中zg代表了最大高度，zb为最大强度，zr为该网格内归一化的密度
-$$ Z_{g}(S_{j}) = max(P_{\Omega i \to j} \bullet[0,0,1]^{T})$$
+利用KITTI数据集给出的标定数据，可以定义将每个点云中的点映射到RGB图像中一个网格的映射函数Sj，描述这个映射的集合为
+$$ P_{Ωi→j} = \{ P_{Ωi} = [x,y,z]^{T}|S_{j} = f_{PS}(P_{Ωi},g) $$  
+于是就可以计算每个像素的3个通道，其中zg代表了最大高度，zb为最大强度，zr为该网格内归一化的密度  
+$$ Z_{g}(S_{j})=max(P_{\Omega i \to j} \bullet[0,0,1]^{T})  $$
 $$ Z_{b}(S_{j}) = max(I(P_{\Omega i \to j}))$$
 $$ Z_{r}(S_{j}) = min(1.0,log(N+1)/64),N = |P_{\Omega i \to j}|$$
 
@@ -45,17 +45,20 @@ $$ Z_{r}(S_{j}) = min(1.0,log(N+1)/64),N = |P_{\Omega i \to j}|$$
 
 ![./imgs/comlexyolo4.jpg](./imgs/complexyolo4.jpg "./imgs/complexyolo4.jpg")  
 网络结构就是简化版的YOLO2的结构，网络的输入就是上一步处理中的"RGB图"，最后一层卷积之后加上了E-RPN
-> - Euler-Region-Proposal，该网络接收CNN提取的特征图像，输出目标的3D位置，大小，类别概率和朝向。各参数定义如下
->    $$b_{x} = \sigma(t_{x})+c_{x}  $$
->    $$b_{y} = \sigma(t_{y})+c_{y}  $$
->    $$b_{W} = P_{W}e^{t_{w}}  $$
->    $$b_{l} = P_{l}e^{t_{l}}  $$
->    $$b_{\Phi} = arg(|z|e^{ib_{\phi}})=arctan_{2}(t_{Im},t_{Re})  $$
-> -  Anchor Box，作者根据尺寸和朝向定义了6种，尺寸分别是车辆、自行车、行人，朝向分别是正前和正后方。
-> 
-> -  复角度回归，角度由atan2(im, re)得到。这样一方面可以避免奇异性，另一方面计算会有封闭的数学空间，从而对模型泛化有优势。
-> 
-> ![./imgs/comlexyolo5.png](./imgs/complexyolo5.png "./imgs/complexyolo5.png")  
+
+Euler-Region-Proposal，该网络接收CNN提取的特征图像，输出目标的3D位置，大小，类别概率和朝向。各参数定义如下  
+
+ $$b_{x} = \sigma(t_{x})+c_{x}  $$
+ $$b_{y} = \sigma(t_{y})+c_{y}  $$
+ $$b_{W} = P_{W}e^{t_{w}}  $$
+ $$b_{l} = P_{l}e^{t_{l}}  $$
+ $$b_{\Phi} = arg(|z|e^{ib_{\phi}})=arctan_{2}(t_{Im},t_{Re})  $$  
+
+- Anchor Box，作者根据尺寸和朝向定义了6种，尺寸分别是车辆、自行车、行人，朝向分别是正前和正后方。
+ 
+- 复角度回归，角度由atan2(im, re)得到。这样一方面可以避免奇异性，另一方面计算会有封闭的数学空间，从而对模型泛化有优势。
+ 
+![./imgs/comlexyolo5.png](./imgs/complexyolo5.png "./imgs/complexyolo5.png")  
 ## 3.损失函数
 
 损失函数就是YOLO的Loss加上欧拉部分的损失，直接相加。
