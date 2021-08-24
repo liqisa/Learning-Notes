@@ -1,4 +1,4 @@
-# Paper Reading Notes
+# CV Paper Reading Notes
 ## e-mail: liqisa@foxmail.com
 Mainly Focus on 
 - Object Detection
